@@ -1,0 +1,62 @@
+#include <iostream>
+#include <stdlib.h>
+#define size 2
+
+using namespace std;
+//const int size =10;
+struct queue 
+{
+    int front,rear;
+    int data[size];
+};
+void add(queue &q,int number);
+void del(queue &q);
+void show(queue &q);
+
+int main()
+{
+    queue q;
+    q.rear =0;
+    q.front =0;
+    add(q,12);
+    add(q,13);
+    add(q,14);
+    show(q);
+    del(q);
+    show(q);
+}
+
+void add(queue &q,int number)
+{
+    if(q.rear == size)
+    printf("full \n");
+    else 
+    {
+        q.data[(q.rear)++] = number;
+    // q.data[q.rear] = number;    
+    // q.rear++;
+    // printf("&d",q.data[q.rear]);
+    }
+}
+
+void del(queue &q)
+{
+    if(q.rear==q.front)
+    printf("empty \n");
+    else
+    printf("the deleted number is : %d \n",q.data[q.front++]);
+}
+
+void show(queue &q)
+{
+        if(q.rear==q.front)
+    printf("empty");
+    else{
+    for(int i=q.front;i<q.rear;i++)
+    {
+        printf("number %d \n",q.data[i]);
+    }
+    }
+}
+
+
