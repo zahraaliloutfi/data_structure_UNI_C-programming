@@ -1,1 +1,94 @@
+#include <iostream>
+#include <stdlib.h>
+#include <malloc.h>
+using namespace std;
 
+struct node
+{
+    int value;
+    node *next;
+};
+typedef node *ptr;
+
+ptr new_node()
+{
+    ptr p =(ptr)malloc(sizeof(node));
+    return p ;
+}
+
+void add_first(int num,ptr &head);
+void del();
+void show(ptr h);
+void add_last(int num, ptr &head);
+void add_last(int num, ptr &head);
+void add_node(int num, ptr &head);
+void del_first(ptr &head);
+void del_last(ptr &head);
+int main()
+{
+ptr n1 =new_node();
+ptr n2 =new_node();
+ptr head=n1;
+n1->value =10;
+n1->next =n2;
+n2->value =20;
+n2->next =NULL; 
+add_last(30,head);
+add_node(27,head);
+del_first(head);
+show(head);
+}
+
+
+void show(ptr hed)
+{
+    ptr head =hed;
+    while(head !=NULL)
+    {
+        printf("%d \n",head->value);
+        head=head->next;
+    }
+}
+
+void add_first(int num,ptr &head)
+{
+    ptr p =new_node();
+    p->value = num;
+    p->next = head;
+    head = p;
+}
+void add_last(int num,ptr &hed)
+{
+   ptr p = new_node();
+   p->value=num;
+   ptr head =hed;
+   while(head->next!=NULL)
+   {
+       head=head->next;
+   }
+   head->next =p;
+}
+
+
+void add_node(int num,ptr &hed)
+{
+    ptr p = new_node();
+    p->value=num;
+    p->next =hed->next;
+    hed->next =p;
+   
+}
+
+void del_first(ptr &hed)
+{
+    ptr head =hed;
+    hed =head->next;
+    free(head);
+}
+
+void del_node(ptr &hed)
+{
+    ptr head = hed->next;
+    hed->next =head->next;
+    free(head);
+}
